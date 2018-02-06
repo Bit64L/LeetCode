@@ -24,9 +24,26 @@
 public class Palindrome_Number_9 {
     class Solution9{
         public boolean isPalindrome(int x) {
-            if(x<0) return false;
-
+            if(x<0 || (x!=0 && x%10 == 0)) return false;
+            int lasthalf = 0;
+            while(x > lasthalf){
+                lasthalf = lasthalf * 10 + x % 10;
+                x /= 10;
+            }
+            if(x == lasthalf || x == lasthalf/10)
+                return true;
+            return false;
         }
+    }
+    public Solution9 solution9 = new Solution9();
+
+    public static void main(String[] args) {
+        Palindrome_Number_9 test = new Palindrome_Number_9();
+        for(int i=100;i<1000;i++){
+            boolean ans = test.solution9.isPalindrome(i);
+            System.out.println(i+"  "+ans);
+        }
+
     }
 
 }
