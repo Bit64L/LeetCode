@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac5e5800-9d33-45eb-8f80-28b849d0906e" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/amazon/NumberOfIslands_200.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/LeetCode.iml" afterPath="$PROJECT_DIR$/LeetCode.iml" />
-    </list>
+    <list default="true" id="ac5e5800-9d33-45eb-8f80-28b849d0906e" name="Default" comment="" />
     <ignored path="LeetCode.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -1046,7 +1042,7 @@
       <workItem from="1518442755605" duration="3027000" />
       <workItem from="1518447197272" duration="93000" />
       <workItem from="1518522543867" duration="6426000" />
-      <workItem from="1520596680389" duration="4741000" />
+      <workItem from="1520596680389" duration="4827000" />
     </task>
     <servers />
   </component>
@@ -1083,7 +1079,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35515000" />
+    <option name="totallyTimeSpent" value="35601000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
