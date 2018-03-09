@@ -1,7 +1,7 @@
 LeetCode题目
 ===
 
-序号       | 题名    | 难度
+序号       | 题名    | 难度 | 类型
 --------- | --------|  --------
 01  | Two_sum | Easy
 02 | Add_Two_Numbers | Medium 
