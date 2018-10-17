@@ -1,37 +1,39 @@
 import common.TreeNode;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class FindLargestValueinEachTreeRow515 {
-    public List<Integer> largestValues(TreeNode root) {
+public class BinaryTreeLevelOrderTraversal102 {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<Integer> list = new LinkedList<>();
+        List<List<Integer>> ans = new LinkedList<>();
         if(root == null)
-            return new ArrayList<>();
-        List<Integer> ans = new ArrayList<>();
+            return ans;
         Queue<TreeNode> q = new LinkedList<>();
-        q.add(root);
-        int count = 1;
-        int max = 0x80000000;
+        q.offer(root);
+        int count = 0;
         while(!q.isEmpty()){
+            if(count == 0){
+                count = q.size();
+                for(TreeNode n : q){
+                    list.add(n.val);
+                }
+                ans.add(list);
+                list = new LinkedList<>();
+            }
             TreeNode node = q.poll();
             count--;
-            if(node.val > max){
-                max = node.val;
-            }
-            if(node.left != null)
+            if(node.left != null){
                 q.offer(node.left);
-            if(node.right != null)
+            }
+            if(node.right != null){
                 q.offer(node.right);
-            if(count == 0){
-                ans.add(max);
-                max = 0x80000000;
-                count = q.size();
             }
         }
         return ans;
+
     }
 
     @Test
@@ -43,7 +45,6 @@ public class FindLargestValueinEachTreeRow515 {
         TreeNode node5 = new TreeNode(2);
         node1.left = node2;
         node1.right = node3;
-
-        System.out.println(largestValues(node1));
+        levelOrder(node1);
     }
 }

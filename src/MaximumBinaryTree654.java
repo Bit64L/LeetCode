@@ -1,3 +1,5 @@
+import common.TreeNode;
+
 public class MaximumBinaryTree654 {
     public TreeNode constructMaximumBinaryTree(int[] nums) {
         if(nums == null || nums.length ==0)

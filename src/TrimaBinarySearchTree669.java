@@ -1,3 +1,4 @@
+import common.TreeNode;
 import org.junit.Test;
 
 public class TrimaBinarySearchTree669 {
