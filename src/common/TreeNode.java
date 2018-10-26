@@ -14,12 +14,7 @@ public class TreeNode {
 
     @Test
     public void test() {
-        TreeNode node1 = new TreeNode(3);
-        TreeNode node2 = new TreeNode(2);
-        TreeNode node3 = new TreeNode(4);
-        TreeNode node4 = new TreeNode(1);
-        TreeNode node5 = new TreeNode(2);
-        node1.left = node2;
-        node1.right = node3;
+        String vals = "-1,-7,9,#,#,-1,-7,#,8,-9";
+        String[] strs = vals.split(",");
     }
 }
