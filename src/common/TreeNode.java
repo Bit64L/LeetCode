@@ -14,7 +14,19 @@ public class TreeNode {
 
     @Test
     public void test() {
-        String vals = "-1,-7,9,#,#,-1,-7,#,8,-9";
+        String vals = "1,2,3,4,5,6";
         String[] strs = vals.split(",");
+        TreeNode root = helper(1, strs);
+        System.out.println();
+    }
+
+    public TreeNode helper(int i, String[] strs) {
+        if (i > strs.length || strs[i - 1].equals("#")) {
+            return null;
+        }
+        TreeNode root = new TreeNode(Integer.parseInt(strs[i - 1]));
+        root.left = helper(2 * i, strs);
+        root.right = helper(2 * i + 1, strs);
+        return root;
     }
 }
