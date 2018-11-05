@@ -2,13 +2,11 @@ import common.TreeNode;
 import org.junit.Test;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 public class HouseRobberIII337 {
     Map<TreeNode, Integer> cache = new HashMap<>();
-    public int rob(TreeNode root) { // optimal substructure
+    public int rob1(TreeNode root) { // optimal substructure
         if(root == null)
             return 0;
         if(cache.containsKey(root))
@@ -17,14 +15,18 @@ public class HouseRobberIII337 {
         if(root.left != null){
             val += rob(root.left.left) + rob(root.left.right);
         }
-        List<TreeNode> list = new LinkedList<>();
         if(root.right != null){
             val += rob(root.right.left) + rob(root.right.right);
         }
         cache.put(root, Math.max(val+root.val, rob(root.left) + rob(root.right)));
         return cache.get(root);
     }
-
+    public int rob(TreeNode root){
+        if(root == null)
+            return 0;
+        int[] res = robSub(root);
+        return Math.max(res[0],res[1]);
+    }
     private int[] robSub(TreeNode root) { // 更优做法，decoupled the subproblems
         if (root == null) return new int[2];
 
