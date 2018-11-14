@@ -1,6 +1,12 @@
 package summary.sort;
 
+import common.TreeNode;
 import org.junit.Test;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 
 public class MergeSort {
 
@@ -36,4 +42,24 @@ public class MergeSort {
         sort(aux, a, 0, a.length - 1);
         System.out.println(a);
     }
+
+    public List<Integer> preorderTraversal(TreeNode root) {
+        if (root == null) return new LinkedList<>();
+        List<Integer> list = new LinkedList<>();
+        TreeNode curr = root;
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        while(curr != null || !stack.isEmpty()){
+            if (curr != null) {
+                list.add(curr.val);
+                stack.push(curr);
+                curr = curr.left;
+            } else {
+                curr = stack.pop();
+                curr = curr.right;
+            }
+        }
+        return list;
+    }
+
+
 }

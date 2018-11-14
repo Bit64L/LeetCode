@@ -1,7 +1,5 @@
 package common;
 
-import org.junit.Test;
-
 public class ListNode {
     public int val;
     public ListNode next;
@@ -10,9 +8,7 @@ public class ListNode {
         val = x;
     }
 
-    @Test
-    public void test() {
-        String str = "1,4,3,2,5,2";
+    public static ListNode create(String str) {//"-1,-7,7,-4,19,6,-9,-5,-2,-5"
         String[] strs = str.split(",");
         ListNode head = new ListNode(Integer.parseInt(strs[0]));
         int i = 1;
@@ -22,5 +18,6 @@ public class ListNode {
             curr = curr.next;
             i++;
         }
+        return head;
     }
 }
