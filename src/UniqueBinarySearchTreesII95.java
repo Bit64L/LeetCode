@@ -38,36 +38,33 @@ public class UniqueBinarySearchTreesII95 {
 
 
     public List<TreeNode> generateTrees(int n) {
-        if(n==0)
-            return new LinkedList<>();
-        List<TreeNode>[] result = new List[n + 1];
-        result[0] = new LinkedList<>();
-        result[0].add(null);
-        for (int len = 1; len <= n; len++) {
-            result[len] = new LinkedList<>();
-            for(int index = 1;index<=len;index++){
-                List<TreeNode> left= result[index-1];
-                List<TreeNode> right = result[len-index];
-                for(TreeNode node1:left){
-                    for(TreeNode node2:right){
-                        TreeNode root = new TreeNode(index);
-                        root.left = node1;
-                        root.right = clone(node2,index);
-                        result[len].add(root);
+        if(n==0) return new ArrayList<>();
+        List<TreeNode>[] dp = new List[n+1];
+        dp[0] = new ArrayList<>();
+        dp[0].add(null);
+        for(int len=1;len<=n;len++){
+            List<TreeNode> tmp = new ArrayList<>();
+            for(int i=1;i<=len;i++){
+                List<TreeNode> left = dp[i-1];
+                List<TreeNode> right = dp[len-i];
+                for(TreeNode leftNode : left)
+                    for(TreeNode rightNode : right){
+                        TreeNode root = new TreeNode(i);
+                        root.left = leftNode;
+                        root.right = dfs(i, rightNode);
+                        tmp.add(root);
                     }
-                }
             }
+            dp[len] = tmp;
         }
-        return result[n];
+        return dp[n];
     }
-
-    public TreeNode clone(TreeNode node, int offset){
-        if(node == null)
-            return null;
-        TreeNode root = new TreeNode(node.val+offset);
-        root.left = clone(node.left, offset);
-        root.right = clone(node.right, offset);
-        return root;
+    public TreeNode dfs(int i, TreeNode root){
+        if(root == null) return null;
+        TreeNode newRoot = new TreeNode(root.val + i);
+        newRoot.left = dfs(i, root.left);
+        newRoot.right = dfs(i, root.right);
+        return newRoot;
     }
 
     @Test
