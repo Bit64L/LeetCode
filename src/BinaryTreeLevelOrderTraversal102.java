@@ -1,9 +1,7 @@
 import common.TreeNode;
 import org.junit.Test;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class BinaryTreeLevelOrderTraversal102 {
     public List<List<Integer>> levelOrder(TreeNode root) {
@@ -34,6 +32,24 @@ public class BinaryTreeLevelOrderTraversal102 {
         }
         return ans;
 
+    }
+
+    public List<List<Integer>> levelOrder1(TreeNode root) {
+        if(root == null) return new LinkedList<>();
+        List<List<Integer>> res = new LinkedList<>();
+        Deque<TreeNode> q = new ArrayDeque<>();
+        q.offer(root);
+        while(!q.isEmpty()){
+            List<Integer> tmp = new LinkedList<>();
+            for(int i = q.size(); i>=1; i--){// 这种更简洁
+                TreeNode node = q.poll();
+                tmp.add(node.val);
+                if(node.left != null) q.offer(node.left);
+                if(node.right != null) q.offer(node.right);
+            }
+            res.add(tmp);
+        }
+        return res;
     }
 
     @Test
