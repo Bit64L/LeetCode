@@ -31,12 +31,12 @@ public class NumberofIslands200 {
         return res;
     }
 
-    public int numIslands1(char[][] grid) {
+    public int numIslands1(char[][] grid) { // 递归做法
         if(grid == null || grid.length == 0) return 0;
         int res = 0;
         for(int i = 0;i < grid.length; i++){
             for(int j = 0; j < grid[0].length; j++){
-                if(grid[i][j] == '1'){
+                if (grid[i][j] == '1'){
                     res++;
                     zeroDfs(grid, i, j);
                 }
