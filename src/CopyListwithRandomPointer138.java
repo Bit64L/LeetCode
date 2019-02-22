@@ -40,7 +40,7 @@ public class CopyListwithRandomPointer138 {
             curr = curr.next.next;
         }
 
-        curr = head;
+        curr = head;// 为了消除边界条件，使用带头结点的链表
         RandomListNode dummy = new RandomListNode(-1);
         RandomListNode newCurr = dummy;
         while(curr != null){
@@ -65,11 +65,10 @@ public class CopyListwithRandomPointer138 {
         return newNode;
     }
 
-
-        @Test
+    @Test
     public void test(){
         RandomListNode node1 = new RandomListNode(-1);
-        RandomListNode node2 = new RandomListNode(-1);
+        RandomListNode node2 = new RandomListNode(-2);
         node2.random = node1;
         node1.next  = node2;
         copyRandomList(node1);

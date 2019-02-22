@@ -1,4 +1,5 @@
 import common.UndirectedGraphNode;
+import org.junit.Test;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -23,14 +24,14 @@ public class CloneGraph133 {
     }
 
     public UndirectedGraphNode cloneGraph1(UndirectedGraphNode node) {
-        if(node == null) return null;
+        if (node == null) return null;
         Deque<UndirectedGraphNode> q = new ArrayDeque<>();
         q.offer(node);
         map.put(node, new UndirectedGraphNode(node.label));
-        while(!q.isEmpty()){
+        while (!q.isEmpty()) {
             UndirectedGraphNode tmp = q.poll();
-            for(UndirectedGraphNode neighbor : tmp.neighbors){
-                if(!map.containsKey(neighbor)){
+            for (UndirectedGraphNode neighbor : tmp.neighbors) {
+                if (!map.containsKey(neighbor)) {
                     map.put(neighbor, new UndirectedGraphNode(neighbor.label));
                     q.offer(neighbor);
                 }
@@ -39,4 +40,18 @@ public class CloneGraph133 {
         }
         return map.get(node);
     }
+
+
+    @Test
+    public void test(){
+        int[] a = {0,1,1,2,3};
+        int[] b = {0,1,1,2,3};
+        System.out.println(a==b);
+    }
 }
+/*
+
+ BFS难点
+ 1.考虑清楚什么时候复制node，什么时候复制node.neighbors.
+ 2. visited 数组该设置
+ */
