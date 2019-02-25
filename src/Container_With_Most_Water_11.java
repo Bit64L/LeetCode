@@ -1,6 +1,3 @@
-import static java.lang.Math.abs;
-import static java.lang.Math.min;
-
 /**
  * Given n non-negative integers a1, a2, ..., an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.
  * <p>
@@ -10,31 +7,25 @@ import static java.lang.Math.min;
 
 
 public class Container_With_Most_Water_11 {
-    public Solution solution = new Solution();
-
-    class Solution {
-        public int maxArea(int[] height) {
-            int a = 0, b = height.length - 1;
-            int maxArea = 0, tempArea = 0;
-            while (a < b) {
-                tempArea = abs((b - a) * min(height[a],height[b]));
-                if (tempArea > maxArea) {
-                    maxArea = tempArea;
-                }
-                if (height[a] < height[b]) {
-                    a++;
-                } else {
-                    b--;
-                }
-
-            }
-            return maxArea;
+    public int maxArea(int[] height) {
+        if(height == null || height.length == 0) return 0;
+        int left = 0, right = height.length - 1;
+        int maxArea = 0;
+        while(left < right){
+            int tmpArea = Math.min(height[left], height[right]) * (right - left);
+            maxArea = Math.max(maxArea, tmpArea);
+            if(height[left] < height[right])
+                left++;
+            else
+                right--;
         }
-    }
+        return maxArea;
 
-
-    public static void main(String[] args) {
-        Container_With_Most_Water_11 container_with_most_water_11 = new Container_With_Most_Water_11();
-        System.out.println(container_with_most_water_11.solution.maxArea(new int[]{1, 1}));
     }
 }
+
+/*
+Two Pointers
+height[left] < height[right]时 left右移
+因为如果right左移的话，面积一定不会增大。
+ */

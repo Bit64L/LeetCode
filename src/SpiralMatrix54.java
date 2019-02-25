@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,19 +35,31 @@ public class SpiralMatrix54 {
     }
 
     public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> res = new LinkedList<>();
-        if(matrix == null || matrix.length ==0) return res;
-        int m = matrix.length, n=matrix[0].length;
-        int row = 0, col = -1;
+        if(matrix == null || matrix.length == 0) return new ArrayList<>();
+        int row = matrix.length, col = matrix[0].length;
+        int m = 0, n = -1;
+        List<Integer> res = new ArrayList<>();
         while(true){
-            for(int i=0;i<n;i++) res.add(matrix[row][++col]);
-            if(--m == 0) break;
-            for(int i=0;i<m;i++) res.add(matrix[++row][col]);
-            if(--n == 0) break;
-            for(int i=0;i<n;i++) res.add(matrix[row][--col]);
-            if(--m == 0) break;
-            for(int i=0;i<m;i++) res.add(matrix[--row][col]);
-            if(--n == 0) break;
+            for(int i = 0; i < col; i++){
+                res.add(matrix[m][++n]);
+            }
+            row--;
+            if(row == 0) break;
+            for(int i = 0; i < row; i++){
+                res.add(matrix[++m][n]);
+            }
+            col--;
+            if(col == 0) break;
+            for(int i = 0; i < col; i++){
+                res.add(matrix[m][--n]);
+            }
+            row--;
+            if(row == 0) break;
+            for(int i = 0; i < row; i++){
+                res.add(matrix[--m][n]);
+            }
+            col--;
+            if(col == 0) break;
         }
         return res;
     }

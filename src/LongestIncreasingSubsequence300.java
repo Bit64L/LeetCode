@@ -78,6 +78,26 @@ public class LongestIncreasingSubsequence300 {
         return ans;
     }
 
+
+    public int lengthOfLIS3(int[] nums) {
+        if(nums == null || nums.length == 0) return 0;
+        int[] dp = new int[nums.length];
+        dp[0] = 1;
+        int res = -1;
+        for(int i = 0; i < nums.length; i++) dp[i] = 1;
+        for(int i = 0; i < nums.length; i++){
+            int max = 1;
+            for(int j = i - 1; j >= 0; j--){
+                if(nums[i] > nums[j]){
+                    max = Math.max(max, dp[j] + 1);
+                }
+            }
+            dp[i] = max;
+            res = Math.max(res, dp[i]);
+        }
+        return res;
+    }
+
     // sequence may not be continuous, 不同于subarray
     @Test
     public void test() {
@@ -85,3 +105,8 @@ public class LongestIncreasingSubsequence300 {
         System.out.println(lengthOfLIS(arr));
     }
 }
+
+/*
+dp[i] 代表以nums[i] 结尾的长增序列
+dp[i] = max(dp[j]+1 (nums[j) < nums[i] && j < i)
+ */
