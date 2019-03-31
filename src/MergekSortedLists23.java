@@ -6,29 +6,27 @@ import java.util.PriorityQueue;
 
 public class MergekSortedLists23 {
     public ListNode mergeKLists(ListNode[] lists) {
-        if(lists == null || lists.length == 0){
-            return null;
-        }
-        PriorityQueue<ListNode> heap = new PriorityQueue<>(new Comparator<ListNode>(){
+        if(lists == null || lists.length == 0) return null;
+        PriorityQueue<ListNode> pq = new PriorityQueue<>(new Comparator<ListNode>(){
             public int compare(ListNode l1, ListNode l2){
                 return l1.val - l2.val;
             }
         });
         for(ListNode node : lists){
-            if(node!=null) // heap cannot add null
-                heap.add(node);
+            if(node != null)
+                pq.add(node);
         }
-        ListNode head = new ListNode(0);
-        ListNode work = head;
-        while(!heap.isEmpty()){
-            ListNode next = heap.remove();
-            work.next = next;
+        ListNode dummy = new ListNode(-1);
+        ListNode work = dummy;
+        while(!pq.isEmpty()){
+            ListNode tmp = pq.poll();
+            if(tmp.next != null) pq.add(tmp.next);
+            work.next = tmp;
+            tmp.next = null;
             work = work.next;
-            next = next.next;
-            if(next != null)
-                heap.add(next);
         }
-        return head.next;
+        return dummy.next;
+
     }
 
 
