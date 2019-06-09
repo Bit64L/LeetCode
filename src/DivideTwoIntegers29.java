@@ -1,27 +1,29 @@
 public class DivideTwoIntegers29 {
     public int divide(int dividend, int divisor) {
-        int sign = 1;
-        if((dividend < 0 && divisor > 0) || (dividend > 0 && divisor < 0)){
-            sign = -1;
-        }
+        int sign = (dividend >>> 31) ^ (divisor >>> 31);
         long a = Math.abs((long)dividend), b = Math.abs((long)divisor);
-
-        long res = helper(a,b);
-
-        if(sign * res - 1  == Integer.MAX_VALUE) return Integer.MAX_VALUE;
-        return sign * (int)res;
+        long res = sign > 0 ? -helper(a, b) : helper(a, b);
+        if(res - 1 == Integer.MAX_VALUE) return Integer.MAX_VALUE;
+        return (int) res;
     }
-    public long helper(long dividend, long divisor){
-        if(dividend < divisor) return 0;
-        if(dividend == divisor) return 1;
-        long count = 1;
-        long sum = divisor;
-        while(sum << 1 <= dividend){
-            dividend -= sum << 1;
+
+    public long helper(long a, long b){
+        if(a < b)
+            return 0;
+        long sum = 0, count = 1;
+        long oriB = b;
+        while(a >= b){
+            a -= b;
+            sum += count;
+            b <<= 1;
             count <<= 1;
-            sum <<= 1;
+
         }
-        if(count == 1) return count + helper(dividend-divisor, divisor);
-        return count + helper(dividend, divisor);
+        return sum + helper(a, oriB);
     }
 }
+
+/*
+用减法计算除法
+优化点：指数扩大，类似快速幂思想
+ */
