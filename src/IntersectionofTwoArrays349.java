@@ -21,17 +21,17 @@ public class IntersectionofTwoArrays349 {
             }
         }
         int[] ans = new int[set.size()];
-        int k =0;
-        for(Integer val : set){
+        int k = 0;
+        for (Integer val : set) {
             ans[k++] = val;
         }
         return ans;
     }
 
     @Test
-    public void test(){
-        int[] nums1={1,2,2,4,0};
-        int[] nums2={4};
+    public void test() {
+        int[] nums1 = {1, 2, 2, 4, 0};
+        int[] nums2 = {4};
         System.out.println(intersection(nums1, nums2));
     }
 }
