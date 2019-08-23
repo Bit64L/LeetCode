@@ -72,6 +72,7 @@ public class KthLargestElementinanArray215 {
     @Test
     public void test() {
         int[] nums = {1, 5, 6, 7, 2, 3};
+        StringBuilder str = new StringBuilder();
         System.out.println(findKthLargest(nums, 1));
     }
 }

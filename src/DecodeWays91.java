@@ -63,9 +63,37 @@ public class DecodeWays91 {
         }
         return dp[0];
     }
+
+
+    class Solution {
+        public int numDecodings(String s) {
+            if(s == null || s.length() == 0)
+                return 0;
+            int[] dp = new int[s.length() + 1];
+            dp[s.length()] = 1;
+            char last = s.charAt(s.length() - 1);
+            if(last >= '1' && last <= '9')
+                dp[s.length() - 1] = 1;
+
+            for(int i = s.length() - 2; i >= 0; i--){
+                if(s.charAt(i) == '0' )
+                    continue;
+                dp[i] += dp[i+1];
+                int tmp = Integer.parseInt(s.substring(i,i+2));
+                if(tmp >= 1 && tmp <= 26){
+                    dp[i] += dp[i + 2];
+                }
+            }
+            return dp[0];
+        }
+    }
+
+
     @Test
     public void test(){
-        System.out.println(numDecodings("226"));
+        String s = "123";
+        String sub = s.substring(1,2);
+        System.out.println(numDecodings("01"));
     }
 }
 /*

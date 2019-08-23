@@ -1,4 +1,5 @@
 import common.Interval;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -30,6 +31,14 @@ public class MeetingRoomsII253 {
         int res = 0;
         while(res < intervals.length && ends[res] != -1) res++;
         return res;
+    }
+
+
+
+    @Test
+    public void test(){
+        int[][] arr = {{1,5},{8,9},{8,9}};
+//        System.out.println(minMeetingRooms(arr));
     }
 }
 
